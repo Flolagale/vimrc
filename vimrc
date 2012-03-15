@@ -63,6 +63,9 @@ Bundle 'surround.vim'
 Bundle 'CmdlineComplete'
 Bundle 'transpose-words'
 Bundle 'kana/vim-smartinput'
+Bundle 'taglist.vim'
+
+" Color schemes.
 Bundle 'github-theme'
 Bundle 'molokai'
 
