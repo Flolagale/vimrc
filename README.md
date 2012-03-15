@@ -12,10 +12,12 @@ Nice isn't it?
 
 ## Remarks
 This works perfectly on Linux and _should_ work on OSX, although it has never been tested.<br>
-However, on Windows, the clone of Vundle itself works, but the:<br>
+However, on Windows, the clone of Vundle itself works, but the:
+
 ```VimL
     :BunbleInstall
-```<br>
+```
+
 command might be entered manually.
 
 [Vim]:http://vim.org
