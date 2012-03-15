@@ -11,7 +11,7 @@ that the settings are immediately ready and up-to-date on any new machine.<br>
 Nice isn't it?
 
 ## Remarks
-This works perfectly on Linux and _should_ work on OSX, although it has never been tested.<br>
+This works perfectly on Linux and _should_ work on OS X, although it has never been tested.<br>
 However, on Windows, the clone of Vundle itself works, but the:
 
 ```VimL
