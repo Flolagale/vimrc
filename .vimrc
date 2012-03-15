@@ -10,7 +10,9 @@ set foldmethod=marker
 
 " Then make sure to use English messages and help.
 set helplang=en
-language message en
+if has('win32')
+    language message en
+endif
 
 " PLUGINS MANAGEMENT"{{{1
 " Use the vundle plugin to manage all the installed plugins.
