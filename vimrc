@@ -64,10 +64,12 @@ Bundle 'CmdlineComplete'
 Bundle 'transpose-words'
 Bundle 'kana/vim-smartinput'
 Bundle 'taglist.vim'
+Bundle 'Gundo'
 
 " Color schemes.
 Bundle 'github-theme'
 Bundle 'molokai'
+Bundle 'sexy-railscasts'
 
 " My own ones.
 Bundle 'Flolagale/kamakou'
