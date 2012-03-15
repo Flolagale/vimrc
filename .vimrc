@@ -8,6 +8,10 @@
 " Fisrt make sure that this file has the correct folding method.
 set foldmethod=marker
 
+" Then make sure to use English messages and help.
+set helplang=en
+language message en
+
 " PLUGINS MANAGEMENT"{{{1
 " Use the vundle plugin to manage all the installed plugins.
 
@@ -26,17 +30,18 @@ endif
 if v:shell_error
     if has('win32')
         call system('mkdir %HOMEPATH%\vimfiles\bundle\vundle')
+        call system('git clone https://github.com/gmarik/vundle.git %HOMEPATH%\vimfiles\bundle\vundle')
     else
         call system('mkdir -p ~/.vim/bundle/vundle')
+        call system('git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle')
     endif
-    call system('git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle')
     if !v:shell_error
         let s:justvundled = 1
     endif
 endif
 
 if has('win32')
-    set rtp+=~/vimfiles/bundle/vundle/
+    set rtp+=%HOMEPATH%\vimfiles\bundle\vundle
 else
     set rtp+=~/.vim/bundle/vundle/
 endif
@@ -56,9 +61,12 @@ Bundle 'surround.vim'
 Bundle 'CmdlineComplete'
 Bundle 'transpose-words'
 Bundle 'kana/vim-smartinput'
+Bundle 'github-theme'
+Bundle 'molokai'
 
-" My own one.
-Bundle 'Flolagale/vimsettings'
+" My own ones.
+Bundle 'Flolagale/kamakou'
+Bundle 'Flolagale/vimcolors'
 
 " Enable file type detection.
 " Use the default filetype settings, so that mail gets 'tw' set to 72,
@@ -129,7 +137,7 @@ if &t_Co > 2 || has("gui_running")
   set hlsearch
 endif
 
-colorscheme molokai
+colorscheme kamakou
 
 " Set font and window size and position when GUI is running.
 if has("gui_running")
@@ -299,16 +307,6 @@ map cù :b#<CR>
 
 " Remap code completion to Ctrl+N and Ctrl+Space. 
 "inoremap <C-Space> <C-n>
-
-" Automatically insert closing surrounding when typing the opening surrounding.
-" To move to the end of the line while staying in insert mode, issue c$
-" imap c$ <ESC>$a
-" inoremap ( ()<ESC>i
-" inoremap " ""<ESC>i
-" inoremap ' ''<ESC>i
-" inoremap [ []<ESC>i
-" inoremap < <><ESC>i
-" inoremap {<CR> {<CR>}<ESC>O
 
 " Smart way to move between windows
 map <C-j> <C-W>j
