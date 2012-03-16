@@ -70,6 +70,9 @@ Bundle 'Gundo'
 Bundle 'github-theme'
 Bundle 'molokai'
 Bundle 'sexy-railscasts'
+Bundle 'nelstrom/vim-mac-classic-theme'
+Bundle 'altercation/vim-colors-solarized'
+Bundle 'gmarik/ingretu'
 
 " My own ones.
 Bundle 'Flolagale/kamakou'
