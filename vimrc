@@ -65,6 +65,7 @@ Bundle 'transpose-words'
 Bundle 'kana/vim-smartinput'
 Bundle 'taglist.vim'
 Bundle 'Gundo'
+Bundle 'AutoComplPop'
 
 " Color schemes.
 Bundle 'github-theme'
