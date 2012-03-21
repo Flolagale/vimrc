@@ -274,7 +274,7 @@ function! Comment()
         s/^\(\s*\)/\1# /
     elseif &ft == 'vim'
         s/^\(\s*\)/\1" /
-    elseif &ft == 'cpp' || &ft == 'c'
+    elseif &ft == 'cpp'
         s/^\(\s*\)/\1\/\/ /
     elseif &ft == 'lisp'
         s/^\(\s*\)/\1;; /
@@ -289,7 +289,7 @@ function! Uncomment()
         s/^\(\s*\)\(#\s*\)/\1/e
     elseif &ft == 'vim'
         s/^\(\s*\)\("\s*\)/\1/e
-    elseif &ft == 'cpp' || &ft == 'c'
+    elseif &ft == 'cpp'
         s/^\(\s*\)\(\/\/\s*\)/\1/e
     elseif &ft == 'lisp'
         s/^\(\s*\)\(;;\s*\)/\1/e
