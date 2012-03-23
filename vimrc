@@ -344,5 +344,18 @@ autocmd BufWritePost *.cpp,*.h,*.c,*.py silent! !ctags -R --extra=+q &
 " Command to set the vim working directory to the current edited file dir.
 command ChangeDirToCurrentFileDir :cd %:p:h
 
+" Command to remove all the options set up by :diffthis
+function! Undiffthis()
+    set nodiff
+    set noscrollbind
+    set nocursorbind
+    set scrollopt=
+    set wrap
+    set foldmethod=manual
+    set foldcolumn=2
+endfunction
+
+command Undiffthis call Undiffthis()
+
 " Command to open the currently edited file in sublime text.
 command SublimeThatFile silent! !"C:\\Program Files\\Sublime Text 2\\sublime_text.exe" % &
