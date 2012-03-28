@@ -15,7 +15,7 @@ This works perfectly on Linux and _should_ work on OS X, although it has never b
 However, on Windows, the clone of Vundle itself works, but the:
 
 ```VimL
-    :BunbleInstall
+    :BundleInstall
 ```
 
 command might be entered manually.
