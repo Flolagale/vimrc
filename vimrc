@@ -66,6 +66,7 @@ Bundle 'kana/vim-smartinput'
 Bundle 'taglist.vim'
 Bundle 'Gundo'
 Bundle 'AutoComplPop'
+Bundle 'vim-indent-object'
 
 " Color schemes.
 Bundle 'github-theme'
