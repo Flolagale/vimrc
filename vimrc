@@ -14,7 +14,7 @@ if has('win32')
     language message en
 endif
 
-" PLUGINS MANAGEMENT"{{{1
+" PLUGINS MANAGEMENT {{{1
 " Use the vundle plugin to manage all the installed plugins.
 
 " Use Vim settings, rather than Vi settings (much better!).
@@ -57,7 +57,7 @@ Bundle 'gmarik/vundle'
 "
 " original repos on github
 Bundle 'ctrlp.vim'
-Bundle 'Syntastic'
+" Bundle 'Syntastic'
 Bundle 'snipMate'
 Bundle 'surround.vim'
 Bundle 'CmdlineComplete'
@@ -101,6 +101,10 @@ endif
  " see :h vundle for more details or wiki for FAQ
  " NOTE: comments after Bundle command are not allowed..
 
+ " PLUGINS SETTINGS {{{1
+ " Make the CtrlP cache persistent between sessions.
+ let g:ctrlp_clear_cache_on_exit = 0
+
 " DEFAULTS ANG GENERAL OPTIONS {{{1
 " When started as "evim", evim.vim will already have done these settings.
 if v:progname =~? "evim"
@@ -135,9 +139,9 @@ map Q gq
 inoremap <C-U> <C-G>u<C-U>
 
 " In many terminal emulators the mouse works just fine, thus enable it.
-if has('mouse')
-  set mouse=a
-endif
+" if has('mouse')
+  " set mouse=a
+" endif
 
 " Set terminal to have 256 colors.
 set t_Co=256
@@ -149,7 +153,7 @@ if &t_Co > 2 || has("gui_running")
   set hlsearch
 endif
 
-colorscheme kamakou
+colorscheme molokai
 
 " Set font and window size and position when GUI is running.
 if has("gui_running")
