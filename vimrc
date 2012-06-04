@@ -101,9 +101,13 @@ endif
  " see :h vundle for more details or wiki for FAQ
  " NOTE: comments after Bundle command are not allowed..
 
- " PLUGINS SETTINGS {{{1
- " Make the CtrlP cache persistent between sessions.
- let g:ctrlp_clear_cache_on_exit = 0
+" PLUGINS OPTIONS {{{1
+" CtrlP
+" Make the CtrlP cache persistent between sessions.
+let g:ctrlp_clear_cache_on_exit = 0
+
+" Use the parent directory o the current file as root directory.
+let g:ctrlp_working_path_mode = 1
 
 " DEFAULTS ANG GENERAL OPTIONS {{{1
 " When started as "evim", evim.vim will already have done these settings.
@@ -269,17 +273,23 @@ autocmd FileType python,vim,sh setlocal formatoptions-=t formatoptions+=c format
 " Associate the *.jou files to the lisp syntax highlighting.
 autocmd BufNewFile,BufRead *.jou set filetype=lisp
 
+" Associate the *.plt files to the gnuplot syntax highlighting.
+autocmd BufNewFile,BufRead *.plt set filetype=gnuplot
+
+" Associate the *.wbjn files to the python syntax highlighting.
+autocmd BufNewFile,BufRead *.wbjn set filetype=python
+
 " Set the default size of the TagList plugin window.
 let TList_WinWidth = 50
 
 "  MAPPING AND SHORTCUTS {{{1
 " Commenting and uncommenting functions, same mapping as in visual studio.
 function! Comment()
-    if &ft == 'python' || &ft == 'sh'
+    if &ft == 'python' || &ft == 'sh' || &ft == 'gnuplot'
         s/^\(\s*\)/\1# /
     elseif &ft == 'vim'
         s/^\(\s*\)/\1" /
-    elseif &ft == 'cpp'
+    elseif &ft == 'cpp' || &ft == 'c'
         s/^\(\s*\)/\1\/\/ /
     elseif &ft == 'lisp'
         s/^\(\s*\)/\1;; /
@@ -290,11 +300,11 @@ map <silent> <C-k><C-k> :call Comment()<CR>
 " Note that the 'e' option of the substitute command means
 " 'don't break command if no search string found'.
 function! Uncomment()
-    if &ft == 'python' || &ft == 'sh'
+    if &ft == 'python' || &ft == 'sh' || &ft == 'gnuplot'
         s/^\(\s*\)\(#\s*\)/\1/e
     elseif &ft == 'vim'
         s/^\(\s*\)\("\s*\)/\1/e
-    elseif &ft == 'cpp'
+    elseif &ft == 'cpp' || &ft == 'c'
         s/^\(\s*\)\(\/\/\s*\)/\1/e
     elseif &ft == 'lisp'
         s/^\(\s*\)\(;;\s*\)/\1/e
@@ -336,31 +346,35 @@ map <M-k> <C-W><S-k>
 map <M-h> <C-W><S-h>
 map <M-l> <C-W><S-l>
 
+" Add emacs mapping to navigate in command mode.
+cnoremap <C-a> <Home>
+cnoremap <C-e> <End>
+cnoremap <C-p> <Up>
+cnoremap <C-n> <Down>
+cnoremap <C-b> <Left>
+cnoremap <C-f> <Right>
+cnoremap <M-b> <S-Left>
+cnoremap <M-f> <S-Right>
+
 " COMMANDS AND AUTOMATION {{{1
+" Change tabs for spaces.
 function! ChangeTabForSpaces()
     set expandtab
     retab
 endfunction
+autocmd BufWritePost *.py,*.vim call ChangeTabForSpaces()
+
+" Generate ctags on demand.
+function! GenerateTags()
+    silent! !ctags -R --extra=+q --fields=+aimS --c-kinds=+p --c++-kinds=+p &
+endfunction
+command GenerateTags call GenerateTags()
 
 " Generate ctags on saving.
-autocmd BufWritePost *.py,*.vim call ChangeTabForSpaces()
 autocmd BufWritePost *.cpp,*.h,*.c,*.py silent! !ctags -R --extra=+q &
 
 " Command to set the vim working directory to the current edited file dir.
 command ChangeDirToCurrentFileDir :cd %:p:h
-
-" Command to remove all the options set up by :diffthis
-function! Undiffthis()
-    set nodiff
-    set noscrollbind
-    set nocursorbind
-    set scrollopt=
-    set wrap
-    set foldmethod=manual
-    set foldcolumn=2
-endfunction
-
-command Undiffthis call Undiffthis()
 
 " Command to open the currently edited file in sublime text.
 command SublimeThatFile silent! !"C:\\Program Files\\Sublime Text 2\\sublime_text.exe" % &
