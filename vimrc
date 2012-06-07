@@ -371,7 +371,7 @@ endfunction
 command GenerateTags call GenerateTags()
 
 " Generate ctags on saving.
-autocmd BufWritePost *.cpp,*.h,*.c,*.py silent! !ctags -R --extra=+q &
+autocmd BufWritePost *.cpp,*.h,*.c,*.py call GenerateTags()
 
 " Command to set the vim working directory to the current edited file dir.
 command ChangeDirToCurrentFileDir :cd %:p:h
