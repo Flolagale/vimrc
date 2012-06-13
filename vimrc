@@ -118,11 +118,13 @@ endif
 " allow backspacing over everything in insert mode
 set backspace=indent,eol,start
 
-"if has("vms")
-"  set nobackup     " do not keep a backup file, use versions instead
-"else
-"  set backup       " keep a backup file
-"endif
+if has("vms")
+    set nobackup     " do not keep a backup file, use versions instead
+else
+    set backup               " keep a backup file
+    set backupdir=$tmp,~\tmp " keep backups in a separate directory
+    set writebackup
+endif
 
 set history=50      " keep 50 lines of command line history
 set ruler       " show the cursor position all the time
@@ -257,8 +259,6 @@ autocmd InsertLeave * set hlsearch
 " Handle the status line
 set laststatus=2
 set statusline=%<%-.40F\ %y%m%r%=\[%{&fenc}\]\ %-14.(%l,%c%V%)\ %P
-
-set nobackup        " do not keep a backup file
 
 " Put all the python highlightings on.
 let python_highlight_all = 1
