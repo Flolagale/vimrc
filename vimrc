@@ -119,7 +119,7 @@ endif
 set backspace=indent,eol,start
 
 if has("vms")
-    set nobackup     " do not keep a backup file, use versions instead
+    set nobackup        " do not keep a backup file, use versions instead
 else
     set backup               " keep a backup file
     set backupdir=$tmp,~/tmp " keep backups in a separate directory
