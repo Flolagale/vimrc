@@ -122,7 +122,7 @@ if has("vms")
     set nobackup     " do not keep a backup file, use versions instead
 else
     set backup               " keep a backup file
-    set backupdir=$tmp,~\tmp " keep backups in a separate directory
+    set backupdir=$tmp,~/tmp " keep backups in a separate directory
     set writebackup
 endif
 
@@ -159,7 +159,7 @@ if &t_Co > 2 || has("gui_running")
   set hlsearch
 endif
 
-colorscheme molokai
+colorscheme kamakou
 
 " Set font and window size and position when GUI is running.
 if has("gui_running")
@@ -289,8 +289,10 @@ function! Comment()
         s/^\(\s*\)/\1# /
     elseif &ft == 'vim'
         s/^\(\s*\)/\1" /
-    elseif &ft == 'cpp' || &ft == 'c'
+    elseif &ft == 'cpp'
         s/^\(\s*\)/\1\/\/ /
+    elseif &ft == 'c'
+        s/^\(\s*\)\(.*\)$/\1\/* \2 *\//
     elseif &ft == 'lisp'
         s/^\(\s*\)/\1;; /
     endif
@@ -304,8 +306,10 @@ function! Uncomment()
         s/^\(\s*\)\(#\s*\)/\1/e
     elseif &ft == 'vim'
         s/^\(\s*\)\("\s*\)/\1/e
-    elseif &ft == 'cpp' || &ft == 'c'
+    elseif &ft == 'cpp'
         s/^\(\s*\)\(\/\/\s*\)/\1/e
+    elseif &ft == 'c'
+        s/^\(\s*\)\/\* \(.*\) \*\/$/\1\2/e
     elseif &ft == 'lisp'
         s/^\(\s*\)\(;;\s*\)/\1/e
     endif
