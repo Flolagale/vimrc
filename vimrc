@@ -67,6 +67,7 @@ Bundle 'taglist.vim'
 Bundle 'Gundo'
 Bundle 'AutoComplPop'
 Bundle 'vim-indent-object'
+Bundle 'scratch.vim'
 
 " Color schemes.
 Bundle 'github-theme'
