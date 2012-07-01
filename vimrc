@@ -62,7 +62,7 @@ Bundle 'snipMate'
 Bundle 'surround.vim'
 " Bundle 'CmdlineComplete'
 Bundle 'transpose-words'
-Bundle 'kana/vim-smartinput'
+" Bundle 'kana/vim-smartinput'
 Bundle 'taglist.vim'
 Bundle 'Gundo'
 Bundle 'AutoComplPop'
@@ -289,12 +289,14 @@ function! Comment()
         s/^\(\s*\)/\1# /
     elseif &ft == 'vim'
         s/^\(\s*\)/\1" /
-    elseif &ft == 'cpp'
+    elseif &ft == 'cpp' || &ft == 'javascript'
         s/^\(\s*\)/\1\/\/ /
     elseif &ft == 'c'
         s/^\(\s*\)\(.*\)$/\1\/* \2 *\//
     elseif &ft == 'lisp'
         s/^\(\s*\)/\1;; /
+    elseif &ft == 'tex'
+        s/^\(\s*\)/\1% /
     endif
 endfunction
 map <silent> <C-k><C-k> :call Comment()<CR>
@@ -306,12 +308,14 @@ function! Uncomment()
         s/^\(\s*\)\(#\s*\)/\1/e
     elseif &ft == 'vim'
         s/^\(\s*\)\("\s*\)/\1/e
-    elseif &ft == 'cpp'
+    elseif &ft == 'cpp' || &ft == 'javascript'
         s/^\(\s*\)\(\/\/\s*\)/\1/e
     elseif &ft == 'c'
         s/^\(\s*\)\/\* \(.*\) \*\/$/\1\2/e
     elseif &ft == 'lisp'
         s/^\(\s*\)\(;;\s*\)/\1/e
+    elseif &ft == 'tex'
+        s/^\(\s*\)\(%\s*\)/\1/e
     endif
 endfunction
 map <silent> <C-k><C-u> :call Uncomment()<CR>
