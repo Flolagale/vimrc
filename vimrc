@@ -365,6 +365,10 @@ cnoremap <C-f> <Right>
 cnoremap <M-b> <S-Left>
 cnoremap <M-f> <S-Right>
 
+" Due to refresh bug on Ubuntu, very often :redraw! has to be called to refresh
+" the screen manually. Map it to \r for convinience.
+map <leader>r :redraw!<CR>
+
 " COMMANDS AND AUTOMATION {{{1
 " Change tabs for spaces.
 function! ChangeTabForSpaces()
