@@ -57,12 +57,12 @@ Bundle 'gmarik/vundle'
 "
 " original repos on github
 Bundle 'ctrlp.vim'
-" Bundle 'Syntastic'
+Bundle 'Syntastic'
 Bundle 'snipMate'
 Bundle 'surround.vim'
 " Bundle 'CmdlineComplete'
 Bundle 'transpose-words'
-" Bundle 'kana/vim-smartinput'
+Bundle 'kana/vim-smartinput'
 Bundle 'taglist.vim'
 Bundle 'Gundo'
 Bundle 'AutoComplPop'
@@ -286,7 +286,7 @@ let TList_WinWidth = 50
 "  MAPPING AND SHORTCUTS {{{1
 " Commenting and uncommenting functions, same mapping as in visual studio.
 function! Comment()
-    if &ft == 'python' || &ft == 'sh' || &ft == 'gnuplot'
+    if &ft == 'python' || &ft == 'sh' || &ft == 'gnuplot' || &ft == 'conf'
         s/^\(\s*\)/\1# /
     elseif &ft == 'vim'
         s/^\(\s*\)/\1" /
@@ -294,7 +294,7 @@ function! Comment()
         s/^\(\s*\)/\1\/\/ /
     elseif &ft == 'c'
         s/^\(\s*\)\(.*\)$/\1\/* \2 *\//
-    elseif &ft == 'lisp'
+    elseif &ft == 'lisp' || &ft == 'scheme'
         s/^\(\s*\)/\1;; /
     elseif &ft == 'tex'
         s/^\(\s*\)/\1% /
@@ -305,7 +305,7 @@ map <silent> <C-k><C-k> :call Comment()<CR>
 " Note that the 'e' option of the substitute command means
 " 'don't break command if no search string found'.
 function! Uncomment()
-    if &ft == 'python' || &ft == 'sh' || &ft == 'gnuplot'
+    if &ft == 'python' || &ft == 'sh' || &ft == 'gnuplot' || &ft == 'conf'
         s/^\(\s*\)\(#\s*\)/\1/e
     elseif &ft == 'vim'
         s/^\(\s*\)\("\s*\)/\1/e
@@ -313,7 +313,7 @@ function! Uncomment()
         s/^\(\s*\)\(\/\/\s*\)/\1/e
     elseif &ft == 'c'
         s/^\(\s*\)\/\* \(.*\) \*\/$/\1\2/e
-    elseif &ft == 'lisp'
+    elseif &ft == 'lisp' || &ft == 'scheme'
         s/^\(\s*\)\(;;\s*\)/\1/e
     elseif &ft == 'tex'
         s/^\(\s*\)\(%\s*\)/\1/e
