@@ -62,7 +62,7 @@ Bundle 'snipMate'
 Bundle 'surround.vim'
 " Bundle 'CmdlineComplete'
 Bundle 'transpose-words'
-Bundle 'kana/vim-smartinput'
+" Bundle 'kana/vim-smartinput'
 Bundle 'taglist.vim'
 Bundle 'Gundo'
 Bundle 'AutoComplPop'
@@ -283,6 +283,10 @@ autocmd BufNewFile,BufRead *.wbjn set filetype=python
 " Set the default size of the TagList plugin window.
 let TList_WinWidth = 50
 
+" Customize the cindent options to have public:, protected: private: indente
+" correctly in c++.
+set cinoptions=g0
+
 "  MAPPING AND SHORTCUTS {{{1
 " Commenting and uncommenting functions, same mapping as in visual studio.
 function! Comment()
@@ -384,7 +388,7 @@ endfunction
 command GenerateTags call GenerateTags()
 
 " Generate ctags on saving.
-autocmd BufWritePost *.cpp,*.h,*.c,*.py call GenerateTags()
+autocmd BufWritePost *.cpp,*.h,*.c,*.py,*.F call GenerateTags()
 
 " Command to set the vim working directory to the current edited file dir.
 command ChangeDirToCurrentFileDir :cd %:p:h
