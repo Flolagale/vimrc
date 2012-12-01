@@ -57,7 +57,7 @@ Bundle 'gmarik/vundle'
 "
 " original repos on github
 Bundle 'ctrlp.vim'
-" Bundle 'Syntastic'
+Bundle 'Syntastic'
 Bundle 'snipMate'
 Bundle 'surround.vim'
 " Bundle 'CmdlineComplete'
@@ -66,8 +66,11 @@ Bundle 'transpose-words'
 Bundle 'taglist.vim'
 Bundle 'Gundo'
 Bundle 'AutoComplPop'
-Bundle 'vim-indent-object'
+Bundle 'vim-indejt-object'
 Bundle 'scratch.vim'
+Bundle 'digitaltzad/vim-jade'
+Bundle 'nginx.vim'
+Bundle 'ZenCoding.vim'
 
 " Color schemes.
 Bundle 'github-theme'
@@ -108,7 +111,7 @@ endif
 let g:ctrlp_clear_cache_on_exit = 0
 
 " Use the parent directory o the current file as root directory.
-let g:ctrlp_working_path_mode = 1
+" let g:ctrlp_working_path_mode = 1
 
 " DEFAULTS ANG GENERAL OPTIONS {{{1
 " When started as "evim", evim.vim will already have done these settings.
@@ -280,6 +283,12 @@ autocmd BufNewFile,BufRead *.plt set filetype=gnuplot
 " Associate the *.wbjn files to the python syntax highlighting.
 autocmd BufNewFile,BufRead *.wbjn set filetype=python
 
+" Associate the *.jade files to the jade syntax highlighting.
+autocmd BufNewFile,BufRead *.jade set filetype=jade
+
+" Associate the nginx configuration files with the appropriate syntax highlighting.
+autocmd BufNewFile,BufRead /etc/nginx/ set filetype=nginx
+
 " Set the default size of the TagList plugin window.
 let TList_WinWidth = 50
 
@@ -292,7 +301,7 @@ function! Comment()
         s/^\(\s*\)/\1" /
     elseif &ft == 'cpp' || &ft == 'javascript'
         s/^\(\s*\)/\1\/\/ /
-    elseif &ft == 'c'
+    elseif &ft == 'c' || &ft == 'css'
         s/^\(\s*\)\(.*\)$/\1\/* \2 *\//
     elseif &ft == 'lisp'
         s/^\(\s*\)/\1;; /
@@ -311,8 +320,8 @@ function! Uncomment()
         s/^\(\s*\)\("\s*\)/\1/e
     elseif &ft == 'cpp' || &ft == 'javascript'
         s/^\(\s*\)\(\/\/\s*\)/\1/e
-    elseif &ft == 'c'
-        s/^\(\s*\)\/\* \(.*\) \*\/$/\1\2/e
+    elseif &ft == 'c' || &ft == 'css'
+        s/^\(\s*\)\/\*\s*\(.*\)\s*\*\/$/\1\2/e
     elseif &ft == 'lisp'
         s/^\(\s*\)\(;;\s*\)/\1/e
     elseif &ft == 'tex'
