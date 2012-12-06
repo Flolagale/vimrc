@@ -66,9 +66,9 @@ Bundle 'transpose-words'
 Bundle 'taglist.vim'
 Bundle 'Gundo'
 Bundle 'AutoComplPop'
-Bundle 'vim-indejt-object'
+Bundle 'vim-indent-object'
 Bundle 'scratch.vim'
-Bundle 'digitaltzad/vim-jade'
+Bundle 'digitaltoad/vim-jade'
 Bundle 'nginx.vim'
 Bundle 'ZenCoding.vim'
 
@@ -110,7 +110,7 @@ endif
 " Make the CtrlP cache persistent between sessions.
 let g:ctrlp_clear_cache_on_exit = 0
 
-" Use the parent directory o the current file as root directory.
+" Use the parent directory of the current file as root directory.
 " let g:ctrlp_working_path_mode = 1
 
 " DEFAULTS ANG GENERAL OPTIONS {{{1
