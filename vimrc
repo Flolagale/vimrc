@@ -83,6 +83,7 @@ Bundle 'gmarik/ingretu'
 " My own ones.
 Bundle 'Flolagale/kamakou'
 Bundle 'Flolagale/vimcolors'
+Bundle 'Flolagale/conque'
 
 " Enable file type detection.
 " Use the default filetype settings, so that mail gets 'tw' set to 72,
