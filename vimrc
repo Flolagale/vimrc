@@ -306,7 +306,7 @@ function! Comment()
         s/^\(\s*\)/\1" /
     elseif &ft == 'cpp' || &ft == 'javascript'
         s/^\(\s*\)/\1\/\/ /
-    elseif &ft == 'c' || &ft == 'css'
+    elseif &ft == 'c' || &ft == 'css' || &ft == 'php'
         s/^\(\s*\)\(.*\)$/\1\/* \2 *\//
     elseif &ft == 'lisp' || &ft == 'scheme'
         s/^\(\s*\)/\1;; /
@@ -325,7 +325,7 @@ function! Uncomment()
         s/^\(\s*\)\("\s*\)/\1/e
     elseif &ft == 'cpp' || &ft == 'javascript'
         s/^\(\s*\)\(\/\/\s*\)/\1/e
-    elseif &ft == 'c' || &ft == 'css'
+    elseif &ft == 'c' || &ft == 'css' || &ft == 'php'
         s/^\(\s*\)\/\*\s*\(.*\)\s*\*\/$/\1\2/e
     elseif &ft == 'lisp' || &ft == 'scheme'
         s/^\(\s*\)\(;;\s*\)/\1/e
