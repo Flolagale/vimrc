@@ -67,6 +67,9 @@ Bundle 'AutoComplPop'
 Bundle 'vim-indent-object'
 Bundle 'scratch.vim'
 Bundle 'OmniCppComplete'
+Bundle 'digitaltoad/vim-jade'
+Bundle 'nginx.vim'
+Bundle 'ZenCoding.vim'
 
 " Color schemes.
 Bundle 'github-theme'
@@ -79,6 +82,7 @@ Bundle 'gmarik/ingretu'
 " My own ones.
 Bundle 'Flolagale/kamakou'
 Bundle 'Flolagale/vimcolors'
+Bundle 'Flolagale/conque'
 
 " Enable file type detection.
 " Use the default filetype settings, so that mail gets 'tw' set to 72,
@@ -298,6 +302,12 @@ autocmd BufNewFile,BufRead *.plt set filetype=gnuplot
 " Associate the *.wbjn files to the python syntax highlighting.
 autocmd BufNewFile,BufRead *.wbjn set filetype=python
 
+" Associate the *.jade files to the jade syntax highlighting.
+autocmd BufNewFile,BufRead *.jade set filetype=jade
+
+" Associate the nginx configuration files with the appropriate syntax highlighting.
+autocmd BufNewFile,BufRead /etc/nginx/ set filetype=nginx
+
 " Set the default size of the TagList plugin window.
 let TList_WinWidth = 50
 
@@ -314,7 +324,7 @@ function! Comment()
         s/^\(\s*\)/\1" /
     elseif &ft == 'cpp' || &ft == 'javascript'
         s/^\(\s*\)/\1\/\/ /
-    elseif &ft == 'c'
+    elseif &ft == 'c' || &ft == 'css' || &ft == 'php'
         s/^\(\s*\)\(.*\)$/\1\/* \2 *\//
     elseif &ft == 'lisp' || &ft == 'scheme'
         s/^\(\s*\)/\1;; /
@@ -333,8 +343,8 @@ function! Uncomment()
         s/^\(\s*\)\("\s*\)/\1/e
     elseif &ft == 'cpp' || &ft == 'javascript'
         s/^\(\s*\)\(\/\/\s*\)/\1/e
-    elseif &ft == 'c'
-        s/^\(\s*\)\/\* \(.*\) \*\/$/\1\2/e
+    elseif &ft == 'c' || &ft == 'css' || &ft == 'php'
+        s/^\(\s*\)\/\*\s*\(.*\)\s*\*\/$/\1\2/e
     elseif &ft == 'lisp' || &ft == 'scheme'
         s/^\(\s*\)\(;;\s*\)/\1/e
     elseif &ft == 'tex'
