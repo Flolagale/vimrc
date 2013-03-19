@@ -60,14 +60,13 @@ Bundle 'ctrlp.vim'
 Bundle 'Syntastic'
 Bundle 'snipMate'
 Bundle 'surround.vim'
-" Bundle 'CmdlineComplete'
 Bundle 'transpose-words'
-" Bundle 'kana/vim-smartinput'
 Bundle 'taglist.vim'
 Bundle 'Gundo'
 Bundle 'AutoComplPop'
 Bundle 'vim-indent-object'
 Bundle 'scratch.vim'
+Bundle 'OmniCppComplete'
 
 " Color schemes.
 Bundle 'github-theme'
@@ -108,7 +107,21 @@ endif
 let g:ctrlp_clear_cache_on_exit = 0
 
 " Use the parent directory o the current file as root directory.
-let g:ctrlp_working_path_mode = 1
+let g:ctrlp_working_path_mode = 2
+
+" No limit on the number of files to index.
+let g:ctrlp_max_files = 0
+
+  let g:ctrlp_custom_ignore = {
+    \ 'dir':  '\.git$\|\.hg$\|\.svn$',
+    \ 'file': '\.exe$\|\.so$\|\.dll\|\.obj\|\.f90$\|\.swp$',
+    \ }
+
+" OmniCppComplete
+" Use the correct omnicompletion method for cpp.
+au BufNewFile,BufRead,BufEnter *.cpp,*.h set omnifunc=omni#cpp#complete#Main
+
+let OmniCpp_ShowPrototypeInAbbr = 1
 
 " DEFAULTS ANG GENERAL OPTIONS {{{1
 " When started as "evim", evim.vim will already have done these settings.
@@ -160,7 +173,12 @@ if &t_Co > 2 || has("gui_running")
   set hlsearch
 endif
 
-colorscheme kamakou
+" Make cursor not blinking in normal, visual and command modes.
+set guicursor+=n-v-c:blinkon0
+
+" colorscheme kamakou
+" set background=light
+colorscheme solarized
 
 " Set font and window size and position when GUI is running.
 if has("gui_running")
@@ -383,15 +401,22 @@ autocmd BufWritePost *.py,*.vim call ChangeTabForSpaces()
 
 " Generate ctags on demand.
 function! GenerateTags()
-    silent! !ctags -R --extra=+q --fields=+aimS --c-kinds=+p --c++-kinds=+p &
+    silent! !ctags -R -V --extra=+q --fields=+aimS --c-kinds=+p --c++-kinds=+p &
 endfunction
 command GenerateTags call GenerateTags()
 
+function! GenerateTagsCpp()
+    " silent! !ctags -R --extra=+q --fields=+aimS --c-kinds=+p --c++-kinds=+p -h=".h" &
+    silent! !ctags -R -V --extra=+q --fields=+aimS --c-kinds=+p --c++-kinds=+p --exclude=".F" --exclude=".inc" &
+endfunction
+command GenerateTagsCpp call GenerateTagsCpp()
+
 " Generate ctags on saving.
-autocmd BufWritePost *.cpp,*.h,*.c,*.py,*.F call GenerateTags()
+" autocmd BufWritePost *.cpp,*.h,*.c call GenerateTags()
 
 " Command to set the vim working directory to the current edited file dir.
 command ChangeDirToCurrentFileDir :cd %:p:h
 
 " Command to open the currently edited file in sublime text.
 command SublimeThatFile silent! !"C:\\Program Files\\Sublime Text 2\\sublime_text.exe" % &
+
