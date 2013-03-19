@@ -405,11 +405,27 @@ function! GenerateTags()
 endfunction
 command GenerateTags call GenerateTags()
 
-function! GenerateTagsCpp()
-    " silent! !ctags -R --extra=+q --fields=+aimS --c-kinds=+p --c++-kinds=+p -h=".h" &
-    silent! !ctags -R -V --extra=+q --fields=+aimS --c-kinds=+p --c++-kinds=+p --exclude=".F" --exclude=".inc" &
+function! GenerateTagsIncrementally()
+python << EOF
+import os
+print('Generating tags incrementally.')
+# Walk the file tree, if a file has an mtime more recent than the tag file,
+# add it to the list of files to index.
+tags_mtime = os.stat('tags').st_mtime
+with open('list', 'w') as fp:
+    for dirpath, dirnames, filenames in os.walk(os.getcwd()):
+        for filename in filenames:
+            full_path = os.path.join(dirpath, filename)
+            if os.stat(full_path).st_mtime > tags_mtime:
+                fp.write(full_path + '\n')
+                # print(full_path) # Files to be indexed.
+
+# Run ctags using the created list of files.
+os.system('ctags -R -V --extra=+q --fields=+aimS --c-kinds=+p --c++-kinds=+p -L list')
+os.remove('list')
+EOF
 endfunction
-command GenerateTagsCpp call GenerateTagsCpp()
+command GenerateTagsIncrementally call GenerateTagsIncrementally()
 
 " Generate ctags on saving.
 " autocmd BufWritePost *.cpp,*.h,*.c call GenerateTags()
