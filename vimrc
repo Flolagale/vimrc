@@ -180,9 +180,12 @@ endif
 " Make cursor not blinking in normal, visual and command modes.
 set guicursor+=n-v-c:blinkon0
 
-" colorscheme kamakou
-" set background=light
-colorscheme solarized
+if has("gui_running")
+  " set background=light
+  colorscheme solarized
+else
+  colorscheme kamakou
+endif
 
 " Set font and window size and position when GUI is running.
 if has("gui_running")
