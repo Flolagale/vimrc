@@ -60,7 +60,6 @@ Bundle 'ctrlp.vim'
 Bundle 'Syntastic'
 Bundle 'snipMate'
 Bundle 'surround.vim'
-Bundle 'transpose-words'
 Bundle 'taglist.vim'
 Bundle 'Gundo'
 Bundle 'AutoComplPop'
@@ -69,7 +68,7 @@ Bundle 'scratch.vim'
 Bundle 'OmniCppComplete'
 Bundle 'digitaltoad/vim-jade'
 Bundle 'nginx.vim'
-Bundle 'ZenCoding.vim'
+Bundle 'Tabular'
 
 " Color schemes.
 Bundle 'github-theme'
@@ -126,6 +125,10 @@ let g:ctrlp_max_files = 0
 au BufNewFile,BufRead,BufEnter *.cpp,*.h set omnifunc=omni#cpp#complete#Main
 
 let OmniCpp_ShowPrototypeInAbbr = 1
+let OmniCpp_SelectFirstItem = 2
+" Disable preview window. Add this back if you want to have help in Python
+" completion.
+set completeopt-=preview
 
 " DEFAULTS ANG GENERAL OPTIONS {{{1
 " When started as "evim", evim.vim will already have done these settings.
@@ -183,6 +186,7 @@ set guicursor+=n-v-c:blinkon0
 if has("gui_running")
   " set background=light
   colorscheme solarized
+  let solarized_hitrail = 1
 else
   colorscheme kamakou
 endif
@@ -196,6 +200,9 @@ if has("gui_running")
 endif
 
 set sessionoptions+=resize,winpos
+
+" Show the cursor line.
+set cursorline
 
 " Only do this part when compiled with support for autocommands.
 if has("autocmd")
@@ -414,7 +421,7 @@ autocmd BufWritePost *.py,*.vim call ChangeTabForSpaces()
 
 " Generate ctags on demand.
 function! GenerateTags()
-    silent! !ctags -R -V --extra=+q --fields=+aimS --c-kinds=+p --c++-kinds=+p &
+    silent! !ctags -R --extra=+q --fields=+aimS --c-kinds=+p --c++-kinds=+p &
 endfunction
 command GenerateTags call GenerateTags()
 
@@ -434,7 +441,7 @@ with open('list', 'w') as fp:
                 # print(full_path) # Files to be indexed.
 
 # Run ctags using the created list of files.
-os.system('ctags -R -V --extra=+q --fields=+aimS --c-kinds=+p --c++-kinds=+p -L list')
+os.system('ctags --recurse --verbose --append --extra=+q --fields=+aimS --c-kinds=+p --c++-kinds=+p -L list')
 os.remove('list')
 EOF
 endfunction
@@ -449,3 +456,8 @@ command ChangeDirToCurrentFileDir :cd %:p:h
 " Command to open the currently edited file in sublime text.
 command SublimeThatFile silent! !"C:\\Program Files\\Sublime Text 2\\sublime_text.exe" % &
 
+" TEMPORARY AND PROJECT PATHS. {{{1
+set rtp+="D:\\Data\\Development\\AnsysSolver\\fracture\\solver"
+set rtp+="C:\\Users\\fgalland\\tags"
+set rtp+="C:\\Users\\fgalland\\tags\\stl_src"
+set tags+="C:\\Users\\fgalland\\tags\\stl_tags"
