@@ -69,6 +69,8 @@ Bundle 'OmniCppComplete'
 Bundle 'digitaltoad/vim-jade'
 Bundle 'nginx.vim'
 Bundle 'Tabular'
+Bundle 'marijnh/tern_for_vim'
+Bundle 'fugitive.vim'
 
 " Color schemes.
 Bundle 'github-theme'
