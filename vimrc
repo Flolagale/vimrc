@@ -58,7 +58,6 @@ Bundle 'gmarik/vundle'
 " original repos on github
 Bundle 'ctrlp.vim'
 Bundle 'Syntastic'
-Bundle 'snipMate'
 Bundle 'surround.vim'
 Bundle 'taglist.vim'
 Bundle 'Gundo'
@@ -69,8 +68,8 @@ Bundle 'OmniCppComplete'
 Bundle 'digitaltoad/vim-jade'
 Bundle 'nginx.vim'
 Bundle 'Tabular'
-Bundle 'marijnh/tern_for_vim'
-Bundle 'fugitive.vim'
+Bundle 'mattn/emmet-vim'
+Bundle 'leafgarland/typescript-vim'
 
 " Color schemes.
 Bundle 'github-theme'
@@ -316,6 +315,9 @@ autocmd BufNewFile,BufRead *.wbjn set filetype=python
 
 " Associate the *.jade files to the jade syntax highlighting.
 autocmd BufNewFile,BufRead *.jade set filetype=jade
+
+" Associate the *.ts files to the typescript syntax highlighting.
+autocmd BufNewFile,BufRead *.ts set filetype=typescript
 
 " Associate the nginx configuration files with the appropriate syntax highlighting.
 autocmd BufNewFile,BufRead /etc/nginx/ set filetype=nginx
