@@ -319,6 +319,9 @@ autocmd BufNewFile,BufRead *.jade set filetype=jade
 " Associate the *.ts files to the typescript syntax highlighting.
 autocmd BufNewFile,BufRead *.ts set filetype=typescript
 
+" Associate the riot *.tag files to the html syntax highlighting.
+autocmd BufNewFile,BufRead *.tag set filetype=html
+
 " Associate the nginx configuration files with the appropriate syntax highlighting.
 autocmd BufNewFile,BufRead /etc/nginx/ set filetype=nginx
 
