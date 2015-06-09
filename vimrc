@@ -298,11 +298,11 @@ set statusline=%<%-.40F\ %y%m%r%=\[%{&fenc}\]\ %-14.(%l,%c%V%)\ %P
 let python_highlight_all = 1
 
 " For vim, python, c and cpp files set 'textwidth' to 80 characters.
-autocmd FileType vim,python,c,cpp,sh setlocal textwidth=80
+autocmd FileType vim,python,c,cpp,sh,javascript setlocal textwidth=80
 
 " For python files, set the formating options to autowrap the comments at 80
 " characters and automatically insert the leading comment char.
-autocmd FileType python,vim,sh setlocal formatoptions-=t formatoptions+=c formatoptions+=r formatoptions+=o formatoptions+=q formatoptions+=l
+autocmd FileType python,vim,sh,javascript setlocal formatoptions-=t formatoptions+=c formatoptions+=r formatoptions+=o formatoptions+=q formatoptions+=l
 
 " Associate the *.jou files to the lisp syntax highlighting.
 autocmd BufNewFile,BufRead *.jou set filetype=lisp
