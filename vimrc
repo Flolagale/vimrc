@@ -131,6 +131,9 @@ let OmniCpp_SelectFirstItem = 2
 " completion.
 set completeopt-=preview
 
+" Use eslint by default.
+let g:syntastic_javascript_checkers = ['eslint']
+
 " DEFAULTS ANG GENERAL OPTIONS {{{1
 " When started as "evim", evim.vim will already have done these settings.
 if v:progname =~? "evim"
